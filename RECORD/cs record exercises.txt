@@ -1,0 +1,750 @@
+Program 1:
+SOURCE CODE:
+
+def sot(tl):
+    n=len(tl)
+    for i in range(n-1):
+        for j in range(0,n-i-1):
+            if tl[j][1]>tl[j+1][1]:
+                tl[j],tl[j+1]=tl[j+1],tl[j]
+    return tl
+
+def update(tl):
+    for i in range(len(tl)):
+        if tl[i][1]>50:
+            tl[i][0]+="+"
+    return tl
+
+def totprice(tl):
+    s=0
+    for i in range(len(tl)):
+        s+=tl[i][1]
+    return s
+    
+def dosage(tl):
+    dosage=[tl[i][0] for i in range(len(tl))]
+    return dosage
+    
+def det(tl):
+    for i in tl:
+        if i[0][0] in ["p","P"]:
+            tl.remove(i)
+    return tl
+
+#output data
+print("\t\tSORTING AND UPDATION OF LIST")
+print("\t\t----------------------------")
+print("INPUT DATA:\n")
+#input data
+n=int(input("Enter total number of tablets:\t"))
+l=[eval(input("Enter tablet name and price:\t")) for i in range(n)]
+
+print("\nOUTPUT DATA:\n")
+print("The given list is:\t",l)
+print("\nSorted list:\t")
+print(sot(l))
+print("\nUpdated list:\t")
+print(update(l))
+print("\nTotal price of the tablets:\t")
+print(totprice(l))
+print("\nThe given dosage is:\t")
+print(dosage(l))
+print("\nDeleted list:\t")
+print(det(l))
+
+OUTPUT:
+              SORTING AND UPDATION OF LIST
+              -----------------------------
+Input Data:
+
+Enter total number of tablets:	4
+Enter tablet name and price:	["crocin",234]
+Enter tablet name and price:	["allegra",25]
+Enter tablet name and price:	["ebasil",344]
+Enter tablet name and price:	["dolo 650",34]
+
+Output Data:
+The given list is:	 [['crocin', 234], ['allegra', 25], ['ebasill', 344], ['dolo 650’', 34]]
+
+Sorted list:	
+[['allegraj', 25], ['dolo 650’', 34], ['crocin', 234], ['ebasill', 344]]
+
+Updated list:	
+[['allegra', 25], ['dolo 650', 34], ['crocin+', 234], ['ebasil+', 344]]
+
+Total price of the tablets:	
+637
+
+The given dosage is:	
+['allegra', 'dolo 650', 'crocin+', 'ebasil+']
+
+Deleted list:	
+[['njad', 34], ['jdks+', 234], ['skal+', 344]]
+ 
+
+
+Program 2:         
+
+SOURCE CODE:
+
+print("\t\tTUPLE UPDATION")
+print("\t\t--------------")
+print("Input data:")
+print("-----------")
+t=();ed=[]
+#input data
+n=int(input("Enter number of food products:\t"))
+for i in range(n):
+    pr_name=str(input("\nEnter product name:\t"))
+    pr_price=int(input("Enter price:\t"))
+    exp_date=str(input("Enter expiry date:\t"))
+    ed+=[exp_date]
+    t+=((pr_name,(pr_price,exp_date)),)
+t=list(t)
+#sorting
+print("Output Data:")
+print("------------")
+for i in range(len(t)-1):
+    for j in range(0,n-i-1):
+        if t[j][1][0]>t[j+1][1][0]:
+            t[j],t[j+1]=t[j+1],t[j]            
+print("\nThe sorted tuple is:\t",tuple(t))
+#rearranging
+nt=()
+for i in t:
+    i=list(i)
+    a=i[1]
+    a=list(a)
+    a[0],a[1]=a[1],a[0]
+    i[1]=tuple(a)
+    nt+=(tuple(i),)
+print("\nThe rearranged tuple is:\t",nt)
+#product finding
+pn=str(input("\nEnter product to find:\t"))
+for i in nt:
+    if i[0]==pn:
+        print("\nThe product details are:\t",i[1])
+#adding prices
+red=[];s=0
+for k in ed:
+    if ed.count(k)>1:
+        red.append(k)
+for i in t:
+    exp=i[1][1]
+    if exp in red:
+        s+=i[1][0]
+print("\n The sum of prices of products having the same expiry date is:\t",s)
+
+OUTPUT:
+
+               TUPLE UPDATION
+               --------------------------
+Input data:
+-----------
+Enter number of food products:	3
+
+Enter product name:	chips
+Enter price:	100
+Enter expiry date:	12\12\20
+
+Enter product name:	biscuit
+Enter price:	75
+Enter expiry date:	13\10\20
+
+Enter product name:	bread
+Enter price:	200
+Enter expiry date:	12\12\20
+
+Output Data:
+------------
+The sorted tuple is:	 (('biscuit', (75, '13\\10\\20')), ('chips', (100, '12\\12\\20')), ('bread', (200, '12\\12\\20')))
+
+The rearranged tuple is:	 (('biscuit', ('13\\10\\20', 75)), ('chips', ('12\\12\\20', 100)), ('bread', ('12\\12\\20', 200)))
+
+Enter product to find:	bread
+
+The product details are:	 ('12\\12\\20', 200)
+
+ The sum of prices of products having the same expiry date is:	 300
+
+
+Program 3:
+SOURCE CODE:
+
+print("\t\tSTRING UPDATION")
+print("\t\t---------------")
+print("\nInput Data:")
+print("------------")
+import math
+#input data
+m1=str(input("Enter first app:\t"))
+m2=str(input("Enter second app:\t"))
+m3=str(input("enter third app:\t"))
+
+#combining strings
+print("\nOutput Data:")
+print("-------------")
+mid=math.ceil(len(m2)/2)
+ns=m2[0:mid]+m1+m2[mid:len(m2)]+m3
+print("\nNew string is:\t",ns)
+#finding characters
+sp=0;up=0;fr={};ns2="";dup=[]
+for i in ns:
+    if i.isalnum()==False:
+        sp+=1
+    if i.isupper():
+        up+=1
+    if i not in dup:
+        dup+=i
+        f=0
+        for j in ns:
+            if i==j:
+                f+=1
+        fr[i]=f
+    if i=="a":
+        ns2+="aa"
+    else:
+        ns2+=i
+#output data
+print("\nNumber of special characters:\t",sp)
+print("\nNumber of uppercase letters:\t",up,"\n")
+for i in fr:
+    print("Frequency of",i,"is:\t",fr[i])
+print("\nThe updated string is:\t",ns2)
+
+OUTPUT:
+
+             STRING UPDATION
+	-----------------------------
+
+Input Data:
+------------
+Enter first app:	            google
+Enter second app:	amAZON++
+Enter third app:	YOu__Tube
+
+Output Data:
+-------------
+
+New string is:	 amAZgoogleON++YOu__Tube
+
+Number of special characters:	 4
+
+Number of uppercase letters:	 7 
+
+Frequency of a is:	 1
+Frequency of m is:	 1
+Frequency of A is:	 1
+Frequency of Z is:	 1
+Frequency of g is:	 2
+Frequency of o is:	 2
+Frequency of l is:	 1
+Frequency of e is:	 2
+Frequency of O is:	 2
+Frequency of N is:	 1
+Frequency of + is:	 2
+Frequency of Y is:	 1
+Frequency of u is:	 2
+Frequency of _ is:	 2
+Frequency of T is:	 1
+Frequency of b is:	 1
+
+The updated string is:	 aamAZgoogleON++YOu__Tube
+
+
+Program 4:
+SOURCE CODE:
+
+  print("\t\tDICTIONARY UPDATION")
+print("\t\t-------------------")
+print("\nInput Data:")
+print("------------")
+#input data
+d={};cl=[]
+n=int(input("\nEnter number of teacher details:\t"))
+for i in range(n):
+    tn=str(input("\nEnter teacher name:\t"))
+    sb=str(input("Enter subject:\t"))
+    c=int(input("Enter class:\t"))
+    cl.append(c)
+    nc=int(input("Enter number of sessions per week:\t"))
+    d[tn]=[sb,c,nc]
+print("\nOutput Data:")
+print("-------------")
+#sorting
+nd={}
+cl.sort(reverse=True)
+for i in cl:
+    for j in d:
+        if d[j][1]==i:
+            nd.update({j:d[j]})
+print("\nThe rearranged dictionary is:\t",nd)
+#concatenation
+for i in nd:
+    nd[i]=nd[i][0]+str(nd[i][1]),nd[i][2]
+    nd[i]=list(nd[i])
+print("\nConcatenated dictionary:\t",nd)
+#append star values
+nd2={}
+for i in nd:
+    if nd[i][1]==20:
+        nd2.update({i+"*":nd[i]})
+    if nd[i][1]==25:
+        nd2.update({i+"**":nd[i]})
+    if nd[i][1]==30:
+        nd2.update({i+"***":nd[i]})
+print("\nDictionary with appended star values:\t",nd2)
+
+OUTPUT:
+          
+                DICTIONARY UPDATION
+		-------------------
+
+Input Data:
+------------
+
+Enter number of teacher details:	3
+
+Enter teacher name:	mrs.bhavani
+Enter subject:	cs
+Enter class:	10
+Enter number of sessions per week:	25
+
+Enter teacher name:	mrs.ruby
+Enter subject:	chemistry
+Enter class:	12
+Enter number of sessions per week:	30
+
+Enter teacher name:	mrs.jessie
+Enter subject:	physics
+Enter class:	11
+Enter number of sessions per week:	20
+
+Output Data:
+-------------
+
+The rearranged dictionary is:	 {'mrs.ruby': ['chemistry', 12, 30], 'mrs.jessie': ['physics', 11, 20], 'mrs.bhavani': ['cs', 10, 25]}
+
+Concatenated dictionary:	 {'mrs.ruby': ['chemistry12', 30], 'mrs.jessie': ['physics11', 20], 'mrs.bhavani': ['cs10', 25]}
+
+Dictionary with appended star values:	 {'mrs.ruby***': ['chemistry12', 30], 'mrs.jessie*': ['physics11', 20], 'mrs.bhavani**': ['cs10', 25]}
+
+
+        
+Program 5:
+
+print(“\tStoring and Reading File Data”)
+print(“\t------------------------------------------”)
+with open("school.txt","w+") as f:
+    with open("school.txt","w+")as fn:
+        print(“\nInput  Data”)
+        print(“----------------”)
+        i=str(input("enter your  school info:\t"))
+        l=i.split(".")
+        k=[]
+        for j in l:
+            j=j+"\n"
+            k.append(j)
+        fn.writelines(k)
+        
+    p=f.readlines()
+    up=0;lw=0;vw=0;cn=0
+    for u in p:
+        for l in u:
+            if l.isupper():
+                up+=1
+            if l.islower():
+                lw+=1
+            if l in ['a','e','i','o','A','E','I','O','U']:
+                vw+=1
+            elif l.isalpha() and l not in ['a','e','i','o','A','E','I','O','U']:
+                cn+=1
+print(“\nOutput Data”)
+print(“------------------”)
+print("\nNumber of uppercase letters:\t",up)
+print("Number of lowercase letters:\t",lw)
+print("Number of vowels:\t",vw)
+print("Number of consonants:\t",cn)
+
+Output:
+
+	  Storing and Reading File Data
+	------------------------------------------
+
+Input Data
+--------------
+enter your  school info:	i belong to the school SBOA JC.The main attraction in our school is our Aviary and fish Tanks.I really love the refreshing atmosphere thanks to the greenery.Teachers make up a big part in making our school life memorable.
+Output Data
+----------------
+Number of uppercase letters:	 11
+Number of lowercase letters:	 169
+Number of vowels:	 67
+Number of consonants:	 113
+
+Program 6:
+
+
+print(“\tTransferring Data”)
+print(“\t-----------------------”)
+def create(filename):
+    with open(filename,"w+") as f:
+        print(“\nInput Data”)
+        print(“-----------------”)
+        i=str(input("enter your  school info:\t"))
+        l=i.split(".")
+        k=[]
+        for j in l:
+            j=j+"\n"
+            k.append(j)
+        f.writelines(k)
+        
+    with open(filename,"r") as f:
+        st=" "
+        print(“\nOutput Data”)
+        print(“------------------”)
+        print("The stored file is:\n")
+        while st:
+            st=f.readline()
+            print(st,end="")
+
+def transfer(filename):
+    with open(filename,"r") as f:
+        with open("myschool.txt","w+") as d:
+            w=f.readlines()
+            for i in w:
+                if "T" in i:
+                    w.remove(i)
+                    d.write(i)
+    with open("myschool.txt","r") as t:
+        st=" "
+        print("New file is:\n")
+        while st:
+            st=t.readline()
+            print(st,end="")
+create("school.txt")
+transfer("school.txt")
+
+Output:
+
+
+	Transferring Data
+	------------------------
+
+Input Data
+-------------
+enter your  school info:	i belong to the school sboa jc.The main attraction in our school is our aviary and fish tanks.I really love the refreshing atmosphere thanks to the greenery.Teachers make up a big part in making our school life memorable.
+
+Output Data
+-----------------
+The stored file is:
+
+i belong to the school sboa jc
+The main attraction in our school is our aviary and fish tanks
+I really love the refreshing atmosphere thanks to the greenery
+Teachers make up a big part in making our school life memorable
+
+New file is:
+
+The main attraction in our school is our aviary and fish tanks
+Teachers make up a big part in making our school life memorable
+
+
+Program 7:
+
+
+print(“\tFile Operations”)
+print(“\t---------------------”)
+print("1. To create a file and store information about india")
+print("2. To display the number of lines and words india")
+print("3. To read the file line by line and  display each word separated by #")
+c=int(input("\nchoose any one of these options:\t"))
+
+if c==1:
+    with open("india.txt","w") as f:
+        l=[]
+        print(“\nInput Data”)
+        print(“----------------”)
+        i=str(input("what do you like about india?\t"))
+        l.append(i+"\n")
+        j=str(input("\nwhat is your favourite place in india?\t"))
+        l.append(j+"\n")
+        k=str(input("\nname any one cultural treasure of india:\t"))
+        l.append(k+"\n")
+        f.writelines(l)
+
+if c==2:
+    with open("india.txt","r") as f:
+        l=f.readlines()
+        nl=len(l)
+        print(“Output Data”)
+        print(“----------------”)
+        print("The number of lines in the file is:\t",nl)
+        count=0
+        for i in l:
+            s=i.split()
+            for j in s:
+                if j=="india":
+                    count+=1
+        print("Number of words india is:\t",count)
+
+if c==3:
+    with open("india.txt","r") as f:
+        st=" "
+        while st:
+            st=f.readline()
+            st=st.replace(" ","#")
+            print(“Output Data”)
+            print(“----------------”)
+            print(st,end=" ")
+       
+Output:
+
+
+1. To create a file and store information about india
+2. To display the number of lines and words india
+3. To read the file line by line and  display each word separated by #
+
+choose any one of these options:	1
+
+Input Data
+--------------
+what do you like about india?	india is a very beautiful country
+
+what is your favourite place in india?	hampi is one of my favourite places in india
+
+name any one cultural treasure of india:	taj mahal is a cultural treasure of india
+----------------------------------------------------------------------------------------------------------------------------------------
+1. To create a file and store information about india
+2. To display the number of lines and words india
+3. To read the file line by line and  display each word separated by #
+
+choose any one of these options:	2
+
+Output Data
+-----------------
+The number of lines in the file is:	 3
+
+Number of words india is:	 3
+-----------------------------------------------------------------------------------------------------------------------------------------
+1. To create a file and store information about india
+2. To display the number of lines and words india
+3. To read the file line by line and  display each word separated by #
+
+choose any one of these options:	3
+
+Output Data
+-----------------
+india#is#a#very#beautiful#country
+ hampi#is#one#of#my#favourite#places#in#india
+ taj#mahal#is#a#cultural#treasure#of#india
+-----------------------------------------------------------------------------------------------------------------------------------------  
+
+Program 8:
+
+import csv
+print("\t\t CSV FILE OPERATIONS")
+print("\t\t--------------------")
+print("INPUT DATA")
+print("----------")
+f=open("employee.csv","w",newline="")
+cw=csv.writer(f)
+cw.writerow(["employee id","employee name","salary"])
+n=int(input("\nenter number of records:\t"))
+for i in range(n):
+    emp_id=int(input("\nenter employee id:\t"))
+    emp_n=str(input("enter name:\t"))
+    sal=int(input("enter salary:\t"))
+    r=[emp_id,emp_n,sal]
+    cw.writerow(r)
+f.close()
+print("\nOUTPUT DATA")
+print("-----------")
+f=open("employee.csv","r",newline="")
+cr=csv.reader(f)
+for rec in cr:
+    if rec[2].isdigit() and int(rec[2])>50000:
+        print("\n")
+        print(rec)
+
+
+Output:
+ CSV FILE OPERATIONS
+		--------------------
+INPUT DATA
+----------
+
+enter number of records:	4
+
+enter employee id:	1
+enter name:	jeno
+enter salary:	60000
+
+enter employee id:	2
+enter name:	jaemin
+enter salary:	75000
+
+enter employee id:	3
+enter name:	jisung pwark
+enter salary:	45000
+
+enter employee id:	4
+enter name:	mark
+enter salary:	90000
+
+OUTPUT DATA
+-----------
+
+
+['1', 'jeno', '60000']
+
+
+['2', 'jaemin', '75000']
+
+
+['4', 'mark', '90000']
+
+
+Program 9:
+
+
+print(“\tQueue Operations”)
+print(“\t------------------------”)
+
+
+queue=[[1,"krupa",1252736273],[2,"mark",234512987],[3,"jeno",42638103723],[4,"jaemin",2749284725]]
+print("1.Add")
+print("2.Delete")
+c=int(input("Enter your choice:\t"))
+def add(q,l):
+    q.append(l)
+    print(“\nOutput Data”)
+    print(“-------------------”)
+    print(“The extended queue is:\t”,q)
+def delete(q):
+    q.pop(0)
+    print(“\nOutput Data”)
+    print(“------------------”)
+    print(“The modified queue is:\t”,q)
+if c==1:
+    print(“\nInput Data”)
+    print(“----------------”)
+    cnm=int(input("Enter customer number:\t"))
+    cn=str(input("Enter customer name:\t"))
+    cp=int(input("enter customer phone number:\t"))
+    cd=[cnm,cn,cp]
+    add(queue,cd)
+
+if c==2:
+    delete(queue)
+    
+    
+Output:
+
+
+1.Add
+2.Delete
+Enter your choice:	1
+
+Input Data
+--------------
+Enter customer number:	5
+Enter customer name:	divya
+enter customer phone number:	8392749293
+
+Output Data
+----------------
+
+The extended queue is:	[[1, 'krupa', 1252736273], [2, 'mark', 234512987], [3, 'jeno', 42638103723], [4, 'jaemin', 2749284725], [5, 'divya', 8392749293]]
+-----------------------------------------------------------------------------------------------------------------------------------------
+1.Add
+2.Delete
+Enter your choice:	2
+
+Output Data
+----------------
+The modified queue is:		[[2, 'mark', 234512987], [3, 'jeno', 42638103723], [4, 'jaemin', 2749284725]]
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Program 10:
+
+
+print(“\tStack Operations”)
+print(“\t------------------------”)
+stack=[[1,"bag",1000],[2,"shoes",800],[3,"pouch",100]]
+def push(stk,pd):
+    stk.append(pd)
+    print(“\nOutput Data”)
+    print(“----------------”)
+    print("The stack after addition is:\t",stk)
+def popp(stk):
+    stk.pop()
+    print(“\nOutput Data”)
+    print(“-----------------”)
+    print("The stack after deletion is:\t",stk)
+print("1.push")
+print("2.pop")
+c=int(input("Enter your choice:\t"))
+if c==1:
+    print(“\nInput Data”)
+    print(“--------------”)
+    pnm=int(input("Enter product number:\t"))
+    pn=str(input("Enter product name:\t"))
+    pc=int(input("Enter product cost:\t"))
+    d=[pnm,pn,pc]
+    push(stack,d)
+if c==2:
+    popp(stack)
+    
+
+Output:
+
+
+	Stack Operations
+	------------------------
+1.push
+2.pop
+Enter your choice:	1
+
+Input Data
+--------------
+Enter product number:	4
+Enter product name:	pen
+Enter product cost:	50
+
+Output Data
+----------------
+The stack after addition is:	 [[1, 'bag', 1000], [2, 'shoes', 800], [3, 'pouch', 100], [4, 'pen', 50]]
+-----------------------------------------------------------------------------------------------------------------------------------------
+	Stack Operations
+	------------------------
+1.push
+2.pop
+Enter your choice:	2
+
+Output Data
+-----------------
+The stack after deletion is:	 [[1, 'bag', 1000], [2, 'shoes', 800]]
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+    
+        
+          
+
+                
+                   
+                   
+
+                  
+
+                
+                   
+                   
+
+                   
+
+                
+                   
+                   
+

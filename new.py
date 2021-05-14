@@ -1,0 +1,17 @@
+f=open(r"C:\Users\Dell\Desktop\CHEM.txt","r")
+s=f.read(30)
+print(s)
+print(f.tell())
+s=f.read(50)
+print(s)
+f.seek(0)
+for i in range(3):
+    s=f.readline()
+    print(s)
+f.seek(0)
+s=f.readlines()
+for j in range (len(s)):
+    print(s[j])
+f.seek(0)
+s=f.read()
+print(len(s))
